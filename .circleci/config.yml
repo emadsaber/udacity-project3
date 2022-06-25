@@ -151,7 +151,7 @@ jobs:
 
   deploy-infrastructure:
     docker:
-      - image: amazon/aws-cli #check this if working or not
+      - image: amazon/aws-cli:latest #check this if working or not
     steps:
       - checkout
       - run:
