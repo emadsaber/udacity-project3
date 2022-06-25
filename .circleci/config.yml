@@ -190,7 +190,7 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: cimg/base:stable
+      - image: amazon/aws-cli:latest
     steps:
       - checkout
       - install-ansible
