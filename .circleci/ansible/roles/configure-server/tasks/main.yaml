@@ -4,7 +4,7 @@
   shell: |
     curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 
-- name: Install NodeJs 13.x
+- name: Install NodeJs 14.x
   become: true
   apt: 
     name: ["nodejs"]
