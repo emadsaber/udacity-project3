@@ -48,12 +48,13 @@ commands:
           name: Revert migrations
           when: on_fail
           command: |
-            SUCCESS = $(curl https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.workflow_ID >>)
-            if(( $SUCCESS==1 )); 
+            SUCCESS=$(curl --insecure https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.workflow_ID >>)
+            if(( $SUCCESS==1 ));
             then
               cd ~/project/backend
               npm install
               npm run migration:revert
+              
             fi
 
   install-nodejs:
@@ -302,9 +303,8 @@ jobs:
             cd ..
             cp backend/artifact.tar.gz .circleci/ansible/roles/deploy/files
       - run:
-          name: Package backend
+          name: Deploy backend
           command: |
-            cd backend
             export TYPEORM_MIGRATIONS_DIR=./migrations
             export TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js}
             export TYPEORM_MIGRATIONS=./migrations/*.ts
