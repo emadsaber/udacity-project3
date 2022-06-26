@@ -64,7 +64,7 @@ commands:
       - run:
           name: install Nodejs from nodesource
           command: |
-            curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+            curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
             sudo apt install -y nodejs
 
 
