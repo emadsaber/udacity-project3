@@ -64,7 +64,7 @@ commands:
       - run:
           name: install Nodejs from nodesource
           command: |
-            curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+            curl -fsSL https://deb.nodesource.com/setup_10.x | sudo -E bash -
             sudo apt install -y nodejs
 
 
@@ -443,12 +443,12 @@ workflows:
       - deploy-backend:
           requires: [run-migrations]
           context: udapeople
-      - smoke-test:
-          requires: [deploy-backend, deploy-frontend]
-          context: udapeople
-      - cloudfront-update:
-          requires: [smoke-test]
-          context: udapeople
-      - cleanup:
-          requires: [cloudfront-update]
-          context: udapeople
+      # - smoke-test:
+      #     requires: [deploy-backend, deploy-frontend]
+      #     context: udapeople
+      # - cloudfront-update:
+      #     requires: [smoke-test]
+      #     context: udapeople
+      # - cleanup:
+      #     requires: [cloudfront-update]
+      #     context: udapeople
