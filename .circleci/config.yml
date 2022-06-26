@@ -259,8 +259,8 @@ jobs:
           name: Get backend url
           command: |
             BACKEND_IP=$(aws ec2 describe-instances \
-              --filter "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}"
-              --query "Reservations[*].Instances[*].PublicIpAddress"
+              --filter "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
+              --query "Reservations[*].Instances[*].PublicIpAddress" \
               --output text) 
             echo "API_URL=http://${BACKEND_IP}:3030" >> frontend/.env
             cat frontend/.env
@@ -299,7 +299,7 @@ jobs:
             npm run build
             echo "packaging artifact..."
             tar -czf artifact.tar.gz dist/* package*
-            cd..
+            cd ..
             cp backend/artifact.tar.gz .circleci/ansible/roles/deploy/files
       - run:
           name: Package backend
